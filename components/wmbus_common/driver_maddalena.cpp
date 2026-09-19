@@ -68,7 +68,7 @@ namespace
             );
 
         addNumericFieldWithExtractor(
-            "target",
+            "target_date",
             "The target date.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::PointInTime,
