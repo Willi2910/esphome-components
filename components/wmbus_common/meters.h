@@ -226,21 +226,6 @@ public:
 
 bool registerDriver(std::function<void(DriverInfo &di)> setup);
 
-static bool ok = registerDriver([](DriverInfo& di)
-{
-    di.setName("maddalena");
-    di.setDefaultFields("name,id,status,total_m3,timestamp");
-    di.setMeterType(MeterType::WaterMeter);
-    di.addLinkMode(LinkMode::T1);
-    di.addLinkMode(LinkMode::C1);
-    di.addDetection(MANUFACTURER_MAD, 0x07, 0x01);
-    di.addDetection(MANUFACTURER_MAD, 0x07, 0x06);
-    di.setConstructor([](MeterInfo& mi, DriverInfo& di)
-    {
-        return std::shared_ptr<Meter>(new Driver(mi, di));
-    });
-});
-
 KEEP_DRIVER(maddalena);
 
 // Lookup (and load if necessary) driver from memory or disk.
