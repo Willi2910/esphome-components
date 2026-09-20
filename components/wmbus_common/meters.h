@@ -232,6 +232,19 @@ bool registerDriver(std::function<void(DriverInfo &di)> setup);
 // has no reason to pull those members in, so no driver ever registers and the
 // build still succeeds. KEEP_DRIVER exports a symbol that codegen references
 // from main.cpp, keeping the object file and its registration.
+
+static bool ok = registerDriver([](DriverInfo&di)
+{
+    ...
+});
+
+KEEP_DRIVER(maddalena);
+
+Driver::Driver(...)
+{
+    ...
+}
+
 #define KEEP_DRIVER(name) bool wmbus_driver_##name##_linked = true
 
 // Lookup (and load if necessary) driver from memory or disk.
